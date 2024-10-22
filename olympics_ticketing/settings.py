@@ -9,7 +9,8 @@ SECRET_KEY = "django-insecure-ipdoi0j86xchvra0hmi30&^f3v$n9$*z*vec4za2t33sx2+k&6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Modification de ALLOWED_HOSTS pour inclure le domaine Heroku et localhost
+ALLOWED_HOSTS = ['intense-garden-86904-95465773536a.herokuapp.com', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
