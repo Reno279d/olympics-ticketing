@@ -1,0 +1,10 @@
+<h1>Mon panier</h1>
+<ul>
+    {% for offre in offres %}
+        <li>
+            {{ offre.nom }} - {{ offre.prix }}€
+            <a href="{% url 'supprimer_du_panier' offre.id %}">Retirer du panier</a>
+        </li>
+    {% endfor %}
+</ul>
+    
