@@ -7,5 +7,5 @@ urlpatterns = [
     path('panier/', views.voir_panier, name='voir_panier'),
     path('supprimer-du-panier/<int:offre_id>/', views.supprimer_du_panier, name='supprimer_du_panier'),
     path('inscription/', views.inscription, name='inscription'),
-    path('profile/', views.profile, name='profile'),  # Ajout d'une page de profil optionnelle
+    path('profile/', views.profile, name='profile'),
 ]

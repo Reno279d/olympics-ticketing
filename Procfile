@@ -1,1 +1,2 @@
-web: gunicorn olympics_ticketing.wsgi --log-file - 
+web: gunicorn olympics_ticketing.wsgi --log-file -
+

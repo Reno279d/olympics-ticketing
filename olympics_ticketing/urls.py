@@ -6,7 +6,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('reservations/', include('reservations.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-
-    # Redirige la racine vers /reservations/
-    path('', lambda request: HttpResponseRedirect('/reservations/')),
+    
+    # Redirige la racine vers /reservations/offres/
+    path('', lambda request: HttpResponseRedirect('/reservations/offres/')),
 ]
+

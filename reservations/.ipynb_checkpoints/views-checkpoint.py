@@ -5,10 +5,8 @@ from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
 def liste_offres(request):
-    # Compte des articles dans le panier
     panier = request.session.get('panier', [])
     panier_count = len(panier)
-
     offres = Offre.objects.all()
     return render(request, 'offres.html', {'offres': offres, 'panier_count': panier_count})
 

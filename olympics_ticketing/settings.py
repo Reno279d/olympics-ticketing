@@ -10,7 +10,7 @@ SECRET_KEY = "django-insecure-ipdoi0j86xchvra0hmi30&^f3v$n9$*z*vec4za2t33sx2+k&6
 DEBUG = True
 
 # Modification de ALLOWED_HOSTS pour inclure le domaine Heroku et localhost
-ALLOWED_HOSTS = ['intense-garden-86904-95465773536a.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['intense-garden-86904-95465773536a.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -53,17 +53,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "olympics_ticketing.wsgi.application"
 
+import dj_database_url
+
 # Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'BDO',  # Nom de ta base de données
-        'USER': 'postgres',  # Utilisateur PostgreSQL
-        'PASSWORD': 'Elrato123S!',  # Mot de passe PostgreSQL
-        'HOST': 'localhost',  # Serveur PostgreSQL (local)
-        'PORT': '5432',  # Port par défaut pour PostgreSQL
-    }
+    'default': dj_database_url.config(
+        default='postgres://ue2kr53hl70ctg:p17bb41cca0d2ddc2b2bf52910a5ff9821112a828f508d114f78b705aa3e7560e@c3gtj1dt5vh48j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6uhb2678opmv9',
+        conn_max_age=600,  # Permet de garder la connexion ouverte pendant 10 minutes
+        ssl_require=False   # Nécessite SSL pour la connexion
+    )
 }
+
+
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
