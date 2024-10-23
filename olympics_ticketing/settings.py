@@ -1,4 +1,6 @@
 from pathlib import Path
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +12,8 @@ SECRET_KEY = "django-insecure-ipdoi0j86xchvra0hmi30&^f3v$n9$*z*vec4za2t33sx2+k&6
 DEBUG = True
 
 # Modification de ALLOWED_HOSTS pour inclure le domaine Heroku et localhost
-ALLOWED_HOSTS = ['intense-garden-86904-95465773536a.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['olympics-ticketing.fly.dev', 'localhost', '127.0.0.1']
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -53,8 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "olympics_ticketing.wsgi.application"
 
-import dj_database_url
-
 # Database
 DATABASES = {
     'default': dj_database_url.config(
@@ -63,9 +64,6 @@ DATABASES = {
         ssl_require=False   # Nécessite SSL pour la connexion
     )
 }
-
-
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -93,6 +91,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ajout de STATIC_ROOT
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
