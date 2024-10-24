@@ -99,3 +99,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Redirections après connexion/déconnexion
 LOGIN_REDIRECT_URL = '/reservations/offres/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+# Ajout des domaines de confiance pour la protection CSRF
+CSRF_TRUSTED_ORIGINS = ['https://olympics-ticketing.fly.dev']
