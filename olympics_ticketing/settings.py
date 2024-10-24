@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-ipdoi0j86xchvra0hmi30&^f3v$n9$*z*vec4za2t33sx2+k&6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Modification de ALLOWED_HOSTS pour inclure le domaine Heroku et localhost
 ALLOWED_HOSTS = ['olympics-ticketing.fly.dev', 'localhost', '127.0.0.1']
