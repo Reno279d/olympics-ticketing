@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-ipdoi0j86xchvra0hmi30&^f3v$n9$*z*vec4za2t33sx2+k&6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # Change to True during local development
+DEBUG = True  # Change to True during local development
 
 # Modification de ALLOWED_HOSTS pour inclure le domaine Fly.io et localhost
 ALLOWED_HOSTS = ['olympics-ticketing.fly.dev', 'localhost', '127.0.0.1']
@@ -57,14 +58,7 @@ WSGI_APPLICATION = "olympics_ticketing.wsgi.application"
 
 # Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'olympics_test',  # Nom de votre base de données
-        'USER': 'postgres',       # Nom d'utilisateur PostgreSQL
-        'PASSWORD': 'Elrato123S!',  # Mot de passe PostgreSQL
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 # Password validation
@@ -104,3 +98,4 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Ajout des domaines de confiance pour la protection CSRF
 CSRF_TRUSTED_ORIGINS = ['https://olympics-ticketing.fly.dev']
+
