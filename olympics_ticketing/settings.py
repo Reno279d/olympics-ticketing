@@ -1,5 +1,4 @@
 from pathlib import Path
-import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -9,11 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-ipdoi0j86xchvra0hmi30&^f3v$n9$*z*vec4za2t33sx2+k&6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False  # Change to True during local development
 
-# Modification de ALLOWED_HOSTS pour inclure le domaine Heroku et localhost
+# Modification de ALLOWED_HOSTS pour inclure le domaine Fly.io et localhost
 ALLOWED_HOSTS = ['olympics-ticketing.fly.dev', 'localhost', '127.0.0.1']
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -24,6 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "reservations",  # Ajout de l'application reservations
+    "tickets",       # Ajout de l'application tickets si nécessaire
 ]
 
 MIDDLEWARE = [
@@ -41,7 +40,7 @@ ROOT_URLCONF = "olympics_ticketing.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],  # Dossier global des templates
+        "DIRS": [BASE_DIR / "templates_global"],  # Assurez-vous que ce chemin est correct
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -58,11 +57,14 @@ WSGI_APPLICATION = "olympics_ticketing.wsgi.application"
 
 # Database
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://ue2kr53hl70ctg:p17bb41cca0d2ddc2b2bf52910a5ff9821112a828f508d114f78b705aa3e7560e@c3gtj1dt5vh48j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6uhb2678opmv9',
-        conn_max_age=600,  # Permet de garder la connexion ouverte pendant 10 minutes
-        ssl_require=False   # Nécessite SSL pour la connexion
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'olympics_test',  # Nom de votre base de données
+        'USER': 'postgres',       # Nom d'utilisateur PostgreSQL
+        'PASSWORD': 'Elrato123S!',  # Mot de passe PostgreSQL
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 # Password validation

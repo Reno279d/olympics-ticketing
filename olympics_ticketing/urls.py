@@ -1,15 +1,22 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponseRedirect
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    # Route pour l'administration Django
     path('admin/', admin.site.urls),
-    path('reservations/', include('reservations.urls')),  # Routes de l'application reservations
-    path('accounts/', include('django.contrib.auth.urls')),  # Authentification Django
 
-    # Supprimez cette redirection si elle existe :
-    # path('', lambda request: HttpResponseRedirect('/reservations/offres/')),
+    # Routes pour l'application "reservations"
+    path('reservations/', include('reservations.urls')),  
 
-    # Redirige la racine vers la page d'accueil
-    path('', include('reservations.urls')),  # L'URL racine pointe maintenant vers les URLs de reservations
+    # Routes pour le système d'authentification de Django
+    path('accounts/', include('django.contrib.auth.urls')),  
+
+    # Route principale redirigée vers l'application "reservations"
+    path('', include('reservations.urls')),  
 ]
+
+# Configuration des fichiers statiques en mode DEBUG uniquement
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

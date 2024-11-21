@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Offres - Jeux Olympiques{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Texte introductif -->
+    <h1 class="text-center mb-4">Offres disponibles</h1>
+    <p class="lead text-center">
+        Explorez nos différentes offres pour les Jeux Olympiques de Paris 2024 : 
+        <br> - <strong>Offre Solo</strong> : pour 1 personne 
+        <br> - <strong>Offre Duo</strong> : pour 2 personnes 
+        <br> - <strong>Offre Familiale</strong> : pour 4 personnes
+    </p>
+    
+    <!-- Liste des offres -->
+    <div class="row">
+        {% for offre in offres %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ offre.nom }}</h5>
+                        <p class="card-text">
+                            Prix : {{ offre.prix }}€
+                        </p>
+                        <form action="{% url 'ajouter_au_panier' offre.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Boutons pour navigation -->
+    <div class="d-flex justify-content-between mt-5">
+        <a href="{% url 'accueil' %}" class="btn btn-secondary">Retourner à l'accueil</a>
+        <a href="{% url 'voir_panier' %}" class="btn btn-success">Voir le panier</a>
+    </div>
+</div>
+{% endblock %}
